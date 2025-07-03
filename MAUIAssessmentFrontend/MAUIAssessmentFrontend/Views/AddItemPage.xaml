@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUIAssessmentFrontend.Views.AddItemPage"
+             Title="Add Item">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Back Button -->
+            <Button Text="Back"
+                    Command="{Binding GoBackCommand}"
+                    BackgroundColor="LightGray"
+                    TextColor="Black"
+                    HorizontalOptions="Start" />
+
+            <Entry Placeholder="Item Name"
+                   Text="{Binding Name}"
+                   MaxLength="20"/>
+
+            <Editor Placeholder="Description"
+                    HeightRequest="100"
+                    Text="{Binding Description}" />
+
+            <Entry Placeholder="Latitude"
+                   Keyboard="Numeric"
+                   Text="{Binding Latitude}" />
+
+            <Entry Placeholder="Longitude"
+                   Keyboard="Numeric"
+                   Text="{Binding Longitude}" />
+
+            <Label Text="{Binding ErrorMessage}"
+                   TextColor="Red"
+                   IsVisible="{Binding IsErrorVisible}" />
+
+            <Image Source="{Binding ImagePath}"
+                   HeightRequest="200"
+                   WidthRequest="200"
+                   Aspect="AspectFill"
+                   BackgroundColor="LightGray"
+                   HorizontalOptions="Center" />
+
+            <Button Text="Pick Image"
+                    Command="{Binding PickImageCommand}" />
+
+            <Button Text="Submit"
+                    Command="{Binding SubmitCommand}" 
+                    BackgroundColor="Green"
+                    TextColor="White"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+    
+
