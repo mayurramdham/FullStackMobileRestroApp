@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUIAssessmentFrontend.Views.DetailPage"
+             xmlns:viewmodels="clr-namespace:MAUIAssessmentFrontend.ViewModels"
+             x:DataType="viewmodels:DetailPageViewModel"
+             Title="Item Details"
+             BackgroundColor="#FAF9F6">
+    <!-- Soft background for restaurant style -->
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="25">
+
+            <!-- Image Card -->
+            <Frame HasShadow="True"
+                   BackgroundColor="White"
+                   CornerRadius="20"
+                   Padding="0"
+                   BorderColor="#E0E0E0"
+                   IsClippedToBounds="True">
+                <Image Source="{Binding Item.ItemImageUrl}"
+                       Aspect="AspectFill"
+                       HeightRequest="220" />
+            </Frame>
+
+            <!-- Name -->
+            <Label Text="{Binding Item.Name}"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="#2E3A59" />
+
+            <!-- Description -->
+            <Label Text="{Binding Item.Description}"
+                   FontSize="16"
+                   TextColor="#4A4A4A"
+                   LineBreakMode="WordWrap" />
+
+            <!-- Coordinates -->
+            <Frame BackgroundColor="#FFFFFF"
+                   CornerRadius="12"
+                   Padding="10"
+                   HasShadow="False"
+                   BorderColor="#DCDCDC">
+                <HorizontalStackLayout Spacing="20">
+                    <Label Text="{Binding Item.Latitude, StringFormat='Lat: {0:F6}'}"
+                           FontSize="14"
+                           TextColor="#888888" />
+                    <Label Text="{Binding Item.Longitude, StringFormat='Long: {0:F6}'}"
+                           FontSize="14"
+                           TextColor="#888888" />
+                </HorizontalStackLayout>
+            </Frame>
+
+            <!-- Buttons -->
+            <HorizontalStackLayout Spacing="12">
+                <Button Text="Edit"
+                        BackgroundColor="#219653"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="12"
+                        Padding="12"
+                        HorizontalOptions="FillAndExpand"
+                        Command="{Binding EditCommand}" />
+
+                <Button Text="Delete"
+                        BackgroundColor="#EB5757"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="12"
+                        Padding="12"
+                        HorizontalOptions="FillAndExpand"
+                        Command="{Binding DeleteCommand}" />
+            </HorizontalStackLayout>
+
+            <!-- Map Section (No extra padding) -->
+            <Frame HasShadow="True"
+                   CornerRadius="15"
+                   BorderColor="#E0E0E0"
+                   BackgroundColor="White"
+                   Padding="0"
+                   IsClippedToBounds="True"
+                   HeightRequest="300">
+                <WebView Margin="0">
+                    <WebView.Source>
+                        <HtmlWebViewSource Html="{Binding MapHtml}" />
+                    </WebView.Source>
+                </WebView>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
