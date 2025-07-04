@@ -14,6 +14,7 @@ namespace App.Core.Dtos
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
         public string? PhoneNumber { get; set; }
+        public int? RoleId { get; set; }
         public IFormFile? ProfilePicture { get; set; }  // Optional image
     }
 }

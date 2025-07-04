@@ -58,7 +58,9 @@ namespace Infrastructure.Services
                     Email = request.Email,
                     PhoneNumber = request.PhoneNumber,
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.PasswordHash), 
-                    ProfileImagePath = profileImageUrl
+                    ProfileImagePath = profileImageUrl,
+                    RoleId=request.RoleId
+                    
                 };
                 string htmlContent = await _emailTemplateService.GenerateRegistrationEmail(newUser.FirstName+" "+newUser.LastName, "MyRestaurantApp", newUser.Email, request.PasswordHash);
                 await _userRepository.AddAsync(newUser);
@@ -90,7 +92,7 @@ namespace Infrastructure.Services
                     throw new UnauthorizedAccessException("Invalid email or password.");
                 }
 
-                string token = await _jwtService.Authenticate(user.Id, user.Email, user.FirstName, user.LastName);
+                string token = await _jwtService.Authenticate(user.Id, user.Email, user.FirstName, user.LastName,user.Role.RoleName);
                 return new LoginResponseDto
                 {
                     Status = 200,

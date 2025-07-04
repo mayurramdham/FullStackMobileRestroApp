@@ -31,6 +31,7 @@ namespace MAUIAssessmentBackend.Controllers
                     Email = request.Email,
                     PhoneNumber = request.PhoneNumber,
                     PasswordHash = request.Password, // ⚠️ Make sure to hash it in production
+                    RoleId = request?.RoleId ?? 1 
                 };
 
                 await _authService.RegisterAsync(user, request.ProfilePicture, _env.WebRootPath);
