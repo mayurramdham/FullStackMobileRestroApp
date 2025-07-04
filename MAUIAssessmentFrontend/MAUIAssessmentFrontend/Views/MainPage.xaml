@@ -81,9 +81,9 @@
                 </Grid>
 
                 <!-- Add Item Button -->
-                <Button Text="➕ Add New Restaurant"
+                <Button IsVisible="{Binding IsAdmin}"
+                        Text="➕ Add New Restaurant"
                         Command="{Binding GoToAddItemCommand}"
-                        HorizontalOptions="FillAndExpand"
                         BackgroundColor="#FF7043"
                         TextColor="White"
                         FontAttributes="Bold"
@@ -184,3 +184,4 @@
 
     </AbsoluteLayout>
 </ContentPage>
+

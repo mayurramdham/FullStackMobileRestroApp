@@ -16,6 +16,11 @@ namespace MAUIAssessmentFrontend.Utility
         public static void ClearToken()
         {
             Preferences.Remove("jwtToken");
+            Preferences.Remove("userName");
+            Preferences.Remove("userId");
+            Preferences.Remove("userImage");
+            Preferences.Remove("email");
+            Preferences.Remove("roleName");
         }
     }
 }

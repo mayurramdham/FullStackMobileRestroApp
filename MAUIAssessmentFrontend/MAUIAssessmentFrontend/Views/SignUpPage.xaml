@@ -29,49 +29,22 @@
                    Keyboard="Email"
                    TextColor="{DynamicResource TextColor}"
                    BackgroundColor="{DynamicResource EntryBackgroundColor}" />
-            
+
             <Entry Placeholder="Phone Number"
                    Text="{Binding PhoneNumber}"
                    MaxLength="10"
                    Keyboard="Telephone"  
                    TextColor="{DynamicResource TextColor}"
                    BackgroundColor="{DynamicResource EntryBackgroundColor}" />
+            <Picker Title="Select Role"
+                    ItemsSource="{Binding Roles}"
+                    SelectedItem="{Binding SelectedRole}"
+                    ItemDisplayBinding="{Binding RoleName}"
+                    TextColor="{DynamicResource TextColor}"
+                    BackgroundColor="{DynamicResource EntryBackgroundColor}" 
+                    Margin="0"
+                    />
 
-            <!-- Password Entry -->
-            <!--<Grid>
-                <Entry Placeholder="Password"
-           IsPassword="{Binding IsPasswordHidden}"
-           Text="{Binding Password}"
-           TextColor="{DynamicResource TextColor}"
-           BackgroundColor="{DynamicResource EntryBackgroundColor}"
-           Margin="0,0,40,0" />
-                <ImageButton Source="{Binding PasswordEyeIcon}"
-                 Command="{Binding TogglePasswordVisibilityCommand}"
-                 BackgroundColor="Transparent"
-                 HorizontalOptions="End"
-                 VerticalOptions="Center"
-                 WidthRequest="24"
-                 HeightRequest="24"
-                 Margin="0,0,10,0" />
-            </Grid>-->
-
-            <!-- Confirm Password Entry -->
-            <!--<Grid>
-                <Entry Placeholder="Confirm Password"
-           IsPassword="{Binding IsConfirmPasswordHidden}"
-           Text="{Binding ConfirmPassword}"
-           TextColor="{DynamicResource TextColor}"
-           BackgroundColor="{DynamicResource EntryBackgroundColor}"
-           Margin="0,0,40,0" />
-                <ImageButton Source="{Binding ConfirmPasswordEyeIcon}"
-                 Command="{Binding ToggleConfirmPasswordVisibilityCommand}"
-                 BackgroundColor="Transparent"
-                 HorizontalOptions="End"
-                 VerticalOptions="Center"
-                 WidthRequest="24"
-                 HeightRequest="24"
-                 Margin="0,0,10,0" />
-            </Grid>-->
 
             <!-- Password Entry -->
 
@@ -117,6 +90,9 @@
             <Label Text="{Binding ErrorMessage}"
                    TextColor="Red"
                    IsVisible="{Binding IsErrorVisible}" />
+
+
+
 
 
             <Button Text="Sign Up"
