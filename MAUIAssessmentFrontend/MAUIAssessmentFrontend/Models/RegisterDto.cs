@@ -14,6 +14,9 @@ namespace MAUIAssessmentFrontend.Models
         public string PhoneNumber { get; set; }
         public string Password { get; set; }
         public Stream ProfilePictureStream { get; set; }
+     
         public string ProfilePictureFileName { get; set; }
+        public int RoleId { get; set; }
     }
+
 }

@@ -3,6 +3,7 @@ using CommunityToolkit.Maui.Core;
 using MAUIAssessmentFrontend.Models;
 using MAUIAssessmentFrontend.Services.Interfaces;
 using MAUIAssessmentFrontend.Utility;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -21,7 +22,28 @@ namespace MAUIAssessmentFrontend.ViewModels
             _authService = authService;
             RegisterCommand = new Command(async () => await RegisterAsync());
             NavigateToLoginCommand = new Command(async () => await NavigateToLogin());
+            Roles = new ObservableCollection<Roles>
+         {
+             new Roles { RoleId = 1, RoleName = "Admin" },
+             new Roles { RoleId = 2, RoleName = "User" }
+         };
+
         }
+
+        private ObservableCollection<Roles> _roles;
+        public ObservableCollection<Roles> Roles
+        {
+            get => _roles;
+            set { _roles = value; OnPropertyChanged(); }
+        }
+
+        private Roles _selectedRole;
+        public Roles SelectedRole
+        {
+            get => _selectedRole;
+            set { _selectedRole = value; OnPropertyChanged(); }
+        }
+
 
         public string Password { get; set; }
 
@@ -109,6 +131,9 @@ namespace MAUIAssessmentFrontend.ViewModels
             }
         }
 
+        public bool IsAdmin=>Preferences.Get("roleName","")=="Admin";
+        public bool IsUser => Preferences.Get("roleName","") == "User";
+
         public ICommand RegisterCommand { get; }
         public ICommand NavigateToLoginCommand { get; }
 
@@ -171,7 +196,9 @@ namespace MAUIAssessmentFrontend.ViewModels
                     LastName = LastName,
                     Email = Email,
                     PhoneNumber = PhoneNumber,
-                    Password = Password
+                    Password = Password,
+                    RoleId=SelectedRole.RoleId
+                    
                 };
 
                 var result = await _authService.RegisterAsync(registerDto);

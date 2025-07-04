@@ -71,6 +71,8 @@ namespace MAUIAssessmentFrontend.ViewModels
         }
 
         public bool IsNotBusy => !IsBusy;
+        public bool IsAdmin => (Preferences.Get("roleName", "")) == "Admin";
+        public bool IsUser => (Preferences.Get("roleName", "")) == "User";
 
         public ObservableCollection<ItemResponseDto> Items { get; } = new();
 
@@ -175,6 +177,16 @@ namespace MAUIAssessmentFrontend.ViewModels
         private async Task GoToAIBotPage()
         {
             await Shell.Current.GoToAsync("ChatView");
+        }
+
+        public void RefreshSessionData()
+        {
+            UserName = Preferences.Get("userName", "User");
+            ProfileImage = Preferences.Get("userImage", "default_image_url");
+
+            // Re-evaluate roles too if needed
+            OnPropertyChanged(nameof(IsAdmin));
+            OnPropertyChanged(nameof(IsUser));
         }
     }
 }

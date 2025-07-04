@@ -55,6 +55,7 @@ namespace MAUIAssessmentFrontend.Services
                 }
                  
                 var response = await _httpClient.PutAsync($"api/User/{userId}", form);
+                Preferences.Set
                 return response.IsSuccessStatusCode;
             }
             catch (Exception ex)

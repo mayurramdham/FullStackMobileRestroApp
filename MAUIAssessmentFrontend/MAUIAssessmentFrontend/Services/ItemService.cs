@@ -76,6 +76,7 @@ namespace MAUIAssessmentFrontend.Services
                 }
 
                 var response = await _httpClient.PostAsync("api/Item", formData);
+              
 
                 return response.IsSuccessStatusCode;
             }

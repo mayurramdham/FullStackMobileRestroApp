@@ -39,8 +39,8 @@ namespace MAUIAssessmentBackend.Controllers
         }
 
         [HttpPost]
-        [Authorize]
-        public async Task<IActionResult> CreateItem([FromForm] ItemDto dto)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> CreateItem([FromForm] ItemDto dto) 
         {
             try
             {
@@ -54,7 +54,7 @@ namespace MAUIAssessmentBackend.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize]
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> UpdateItem(int id, [FromForm] ItemDto dto)
         {
             try
@@ -70,7 +70,7 @@ namespace MAUIAssessmentBackend.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize]
+        [Authorize(Roles="Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var deleted = await _itemService.DeleteItemAsync(id);

@@ -20,7 +20,7 @@ namespace Infrastructure.Services
         {
             _configuration = configuration;
         }
-        public async Task<string> Authenticate(int userId, string userEmail, string FirstName, string LastName)
+        public async Task<string> Authenticate(int userId, string userEmail, string FirstName, string LastName,string Roles)
         {
             var issuer = _configuration["JwtConfig:Issuer"];
             var audience = _configuration["JwtConfig:Audience"];
@@ -35,9 +35,9 @@ namespace Infrastructure.Services
                     new Claim("UserId",userId.ToString()),
                      new Claim("Name",FirstName),
                      new Claim("Email",LastName),
-                     
+                     new Claim(ClaimTypes.Role,Roles)
 
-                }),
+                     }),
                 Expires = tokenExpiryTimeStamp,
                 Issuer = issuer,
                 Audience = audience,
